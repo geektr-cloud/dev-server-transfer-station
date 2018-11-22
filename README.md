@@ -30,7 +30,7 @@ port|desc
 # proxy a entry server transfer station
 
 ```
-GATEWAY_BACKEND=$(dig +short transfer.dev.geektr.cloud)
+GATEWAY_BACKEND=$(dig +short dev.frp.geektr.cloud)
 
 iptables -A FORWARD -j ACCEPT
 iptables -t nat -A POSTROUTING -j MASQUERADE
