@@ -1,0 +1,16 @@
+version: '3'
+services:
+  frp_server:
+    image: geektr/frp
+    restart: always
+    ports:
+      - "5700:7000"
+      - "5701:7001"
+      - "5750:5750"
+      - "5780:80"
+      - "5743:443"
+      - "5722:22"
+    env_file:
+      - "$secrets_dir/frp/frp.env"
+    volumes:
+      - "$service_dir/conf/frp/frps.ini:/etc/frp/frps.ini:ro"
