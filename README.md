@@ -30,10 +30,10 @@ port|desc
 # proxy a entry server transfer station
 
 ```
-GATEWAY_BACKEND=$(dig +short dev.frp.geektr.cloud)
+DEV_FRP=$(dig +short dev.frp.geektr.cloud | sed -n '/[0-9]/p')
 
 iptables -A FORWARD -j ACCEPT
 iptables -t nat -A POSTROUTING -j MASQUERADE
-iptables -t nat -A PREROUTING -p tcp --dport 80  -j DNAT --to-destination $GATEWAY_BACKEND:5780
-iptables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination $GATEWAY_BACKEND:5743
+iptables -t nat -A PREROUTING -p tcp --dport 80  -j DNAT --to-destination $DEV_FRP:5780
+iptables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination $DEV_FRP:5743
 ```
