@@ -34,6 +34,7 @@ DEV_FRP=$(dig +short dev.frp.geektr.cloud | sed -n '/[0-9]/p')
 
 iptables -A FORWARD -j ACCEPT
 iptables -t nat -A POSTROUTING -j MASQUERADE
+iptables -t nat -A PREROUTING -p tcp --dport 22 -j DNAT --to-destination $DEV_FRP:5722
 iptables -t nat -A PREROUTING -p tcp --dport 80  -j DNAT --to-destination $DEV_FRP:5780
 iptables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination $DEV_FRP:5743
 ```
